@@ -251,9 +251,10 @@
 - (void) vcardUpdate:(ContactItem*) contact;
 {
     if ([[contact jid] isEqualToString: [self targetJid]]) {
-        if (![[contact name] isEqualToString:[contact name]]) {
+        if (![[contact name] isEqualToString:@""]) {
             [self setTargetName: [contact name]];
-        } else {
+        } 
+        if ([[contact photo] length] > 0) {
             NSImage* image = [[NSImage alloc] initWithData:[contact photo]];
             [self setTargetImage: image];
         }

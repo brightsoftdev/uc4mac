@@ -8,7 +8,6 @@
 
 #import "SearchViewController.h"
 #import "BuddyCell.h"
-#include "presence.h"
 #import "XMPP.h"
 #import "ContactItem.h"
 #import "ContactDataContext.h"
@@ -18,7 +17,6 @@
 - (void) awakeFromNib
 {
     contacts = [[NSMutableArray alloc] init];
-    [xmpp setSearchDelegate:self];
     [contactList setIntercellSpacing:NSMakeSize(0,0)];
     [contactList setTarget:self];
     [contactList setDoubleAction:@selector(onDoubleClick:)];
@@ -47,53 +45,10 @@
     return [contacts count];
 }
 
-- (NSString*) statusImage:(NSInteger) presence
-{
-    switch (presence) {
-        case gloox::Presence::Available:
-            return [NSImage imageNamed:@"status_online.png"];
-            break;
-            
-            /*case gloox::Presence::Chat:
-             return [NSString stringWithString:@"Chat"];
-             break;*/
-            
-        case gloox::Presence::Away:
-            return [NSImage imageNamed:@"status_hide.png"];
-            break;
-            
-        case gloox::Presence::DND:
-            return [NSImage imageNamed:@"status_busy.png"];
-            break;
-            
-            /*case gloox::Presence::XA:
-             return [NSString stringWithString:@"Away for an extended period of time"];
-             break;*/
-            
-        case gloox::Presence::Unavailable:
-            return [NSImage imageNamed:@"status_offline.png"];
-            break;
-            
-            /*case gloox::Presence::Probe:
-             return [NSString stringWithString:@"Probe"];
-             break;
-             
-             case gloox::Presence::Error:
-             return [NSString stringWithString:@"Error"];
-             break;*/
-        case PRESENCE_UNKNOWN:
-            return [NSImage imageNamed:@"status_offline.png"];
-            break;    
-        default:
-            return [NSImage imageNamed:@"status_offline.png"];
-            break;
-    }
-}
-
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    if ([[tableColumn identifier] isEqualToString:@"image"]) {
-        NSData* imageData = [[contacts objectAtIndex:row] valueForKey:@"image"];
+    if ([[tableColumn identifier] isEqualToString:@"photo"]) {
+        NSData* imageData = [[contacts objectAtIndex:row] valueForKey:@"photo"];
         if (imageData) {
             NSImage* image = [[[NSImage alloc] initWithData:imageData] autorelease];
             return image;
@@ -106,7 +61,7 @@
         return [[contacts objectAtIndex:row] valueForKey:@"name"];
     }
     if ([[tableColumn identifier] isEqualToString:@"status"]) {
-        return [self statusImage:[[[contacts objectAtIndex:row] valueForKey:@"presence"] integerValue]];
+        return [ContactItem statusImage:[[[contacts objectAtIndex:row] valueForKey:@"presence"] integerValue]];
     }
     return nil;
 }

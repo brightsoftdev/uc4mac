@@ -8,6 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HistoryContactViewController : NSViewController
+@class XMPP;
+@class ContactDataContext;
+@interface HistoryContactViewController : NSViewController <NSTableViewDataSource> {
+@private
+    NSMutableArray* contacts;
+    IBOutlet NSTableView* contactList;
+    IBOutlet ContactDataContext* contactDataContext;
+    IBOutlet XMPP* xmpp;
+}
+
+- (void) showContacts;
 
 @end

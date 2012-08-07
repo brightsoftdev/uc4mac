@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "SearchDelegate.h"
 
 @class XMPP;
 @class ContactDataContext;
-@interface SearchViewController : NSViewController <SearchDelegate, NSTableViewDataSource> {
+@interface SearchViewController : NSViewController <NSTableViewDataSource> {
 @private
     NSMutableArray* contacts;
     IBOutlet NSTableView* contactList;

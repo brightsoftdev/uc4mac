@@ -19,6 +19,8 @@
     IBOutlet NSSegmentedControl* containerSelector;
     IBOutlet NSTabView* contactAndRoomContainer;
     IBOutlet NSTabView* contactAndSearchContainer;
+    IBOutlet NSViewController* searchViewController;
+    IBOutlet NSViewController* historyContactViewController;
     
 	NSImage* myImage;
     NSString* myName;
@@ -26,8 +28,8 @@
 }
 
 @property (nonatomic, retain) NSImage* myImage;
-@property (nonatomic, retain) NSString* myName;
-@property (nonatomic, retain) NSString* myJid;
+@property (nonatomic, assign) NSString* myName;
+@property (nonatomic, assign) NSString* myJid;
 
 - (IBAction) switchView:(id) sender;
 - (IBAction) search:(id) sender;

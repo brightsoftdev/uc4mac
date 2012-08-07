@@ -10,7 +10,6 @@
 #import "SynthesizeSingleton.h"
 #import "XMPPConnectionDelegate.h"
 #import "XMPPVcardUpdateDelegate.h"
-#import "SearchDelegate.h"
 #import "ContactItem.h"
 #import "MUCRoomItem.h"
 #import "XMPPSession.h"
@@ -608,7 +607,6 @@ void    CXmpp::handleLog(gloox::LogLevel level, gloox::LogArea area, const std::
 
 @implementation XMPP
 @synthesize myVcard;
-@synthesize searchDelegate;
 
 //SYNTHESIZE_SINGLETON_FOR_CLASS(XMPP)
 
@@ -795,14 +793,6 @@ void    CXmpp::handleLog(gloox::LogLevel level, gloox::LogArea area, const std::
         [mucRoomManager updateRoomContacts:[contacts valueForKey:@"contacts"] withRoomJid:[contacts valueForKey:@"roomjid"]];
     }
     [roomContacts release];
-}
-
-- (void) searchContacts:(NSString*) cond
-{
-    if (!searchDelegate) {
-        return;
-    }
-    [searchDelegate search:cond];
 }
 
 - (void) joinRooms:(NSMutableArray*) rooms

@@ -238,7 +238,7 @@
     }
     [self setValue:[contact name] forKey:@"name" intoManagedObject:obj];
     [self setValue:[contact status] forKey:@"status" intoManagedObject:obj];
-    [self setValue:[contact photo] forKey:@"image" intoManagedObject:obj];
+    [self setValue:[contact photo] forKey:@"photo" intoManagedObject:obj];
     [self setValue:[contact pinyin] forKey:@"pinyin" intoManagedObject:obj];
     [self setValue:group forKey:@"group" intoManagedObject:obj];
     [obj setValue:[NSNumber numberWithLong:[contact presence]] forKey:@"presence"];

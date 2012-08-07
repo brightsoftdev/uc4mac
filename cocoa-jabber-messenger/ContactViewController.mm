@@ -133,8 +133,8 @@
         NSString* name = [NSString stringWithFormat:@"\t%@", [obj valueForKey:@"name"]];
         return name;
     }
-    if ([[tableColumn identifier] isEqualToString:@"image"]) {
-        NSData* imageData = [obj valueForKey:@"image"];
+    if ([[tableColumn identifier] isEqualToString:@"photo"]) {
+        NSData* imageData = [obj valueForKey:@"photo"];
         if (imageData) {
             NSImage* image = [[[NSImage alloc] initWithData:imageData] autorelease];
             return image;

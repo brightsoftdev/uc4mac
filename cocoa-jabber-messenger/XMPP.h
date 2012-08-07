@@ -24,7 +24,6 @@
     NSMutableArray* connectionDelegates;
     NSMutableArray* vcardUpdateDelegates;
     NSMutableArray* stanzas;
-    id <SearchDelegate> searchDelegate;
     XMPPThread* xmppThread;
     
     IBOutlet XMPPSessionManager* sessionManager;
@@ -32,8 +31,7 @@
     RequestWithTGT* tgtRequest;
 }
 
-@property (assign) NSMutableDictionary* myVcard;
-@property (assign) id <SearchDelegate> searchDelegate;
+@property (retain) NSMutableDictionary* myVcard;
 
 - (XMPPSessionManager*) sessionManager;
 - (XMPPMUCRoomManager*) mucRoomManager;

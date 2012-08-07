@@ -7,6 +7,8 @@
 //
 
 #import "LaunchedViewController.h"
+#import "SearchViewController.h"
+#import "HistoryWindowController.h"
 #import "XMPP.h"
 
 @implementation LaunchedViewController
@@ -50,13 +52,20 @@
 
 - (IBAction) switchView:(id) sender
 {
+    [containerSelector setImage:[NSImage imageNamed:@"group0.png"] forSegment:0];
+    [containerSelector setImage:[NSImage imageNamed:@"group1.png"] forSegment:1];
+    [containerSelector setImage:[NSImage imageNamed:@"group2.png"] forSegment:2];
+    if ([sender selectedSegment] == 2) {
+        [historyContactViewController showContacts];
+    }
+    [containerSelector setImage:[NSImage imageNamed:[NSString stringWithFormat:@"group%d_Down.png", [sender selectedSegment]]] forSegment:[sender selectedSegment]];
     [contactAndRoomContainer selectTabViewItemAtIndex:[sender selectedSegment]];
 }
 
 - (IBAction) search:(id) sender
 {
     if ([[sender stringValue] isEqualToString:@""] == NO) {
-        [xmpp searchContacts:[sender stringValue]];
+        [searchViewController search:[sender stringValue]];
         [contactAndSearchContainer selectTabViewItemAtIndex:1];
     } else {
         [contactAndSearchContainer selectTabViewItemAtIndex:0];

@@ -45,7 +45,7 @@
 - (void) showHistory:(NSInteger) page
 {
     [historyList deselectRow:[historyList selectedRow]];
-    NSArray* chatHistory = [[NSArray alloc] initWithArray:[MessageItem findByCriteria:[NSString stringWithFormat:@"WHERE jid='%@' ORDER BY time_stamp DESC LIMIT 10 OFFSET %d", jid, page*10]]];
+    NSArray* chatHistory = [[NSArray alloc] initWithArray:[MessageItem findByCriteria:[NSString stringWithFormat:@"WHERE jid='%@' ORDER BY pk DESC LIMIT 10 OFFSET %d", jid, page*10]]];
     if ([chatHistory count] > 0) {
         [history removeAllObjects];
         currentPage = page;

@@ -142,7 +142,7 @@ void 	CMessageSessionEventHandler::handleChatState (const gloox::JID &from, gloo
     NSImage* image = [[NSImage alloc] initWithData:[[xmpp myVcard] valueForKey:@"image"]];
     [windowController setMyImage: image];
     [image release];
-    NSData* imageData = [dataObject valueForKey:@"image"];
+    NSData* imageData = [dataObject valueForKey:@"photo"];
     if (imageData) {
         NSImage* image = [[NSImage alloc] initWithData:imageData];
         [windowController setTargetImage:image];
